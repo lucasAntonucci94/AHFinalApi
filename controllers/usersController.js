@@ -11,6 +11,7 @@ function login(req, res){
             email: data.email
         })
         console.log('TOKEN JWT', token)
+        console.log(data)
         res.header('auth-token', token).json({user: data, token: token})
     })
     .catch(function(err){
@@ -28,6 +29,7 @@ const schema = yup.object({
     password: yup.string().min(4).required("El password es obligatorio"),
     firstName: yup.string(),
     lastName: yup.string(),
+    image: yup.string(),
     isAdmin: yup.boolean().required("El rol es obligatorio")
 }).noUnknown()
 

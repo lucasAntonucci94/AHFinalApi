@@ -73,6 +73,7 @@ async function login(email, password) {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
+                    image: user.image,
                     isAdmin: user.isAdmin
                 }
             }
@@ -121,10 +122,13 @@ const updateProfile = async(data) =>
     database(async db => {
         const dbUser = await db.findOne({ email: data.email });
         if(dbUser){
+            console.log(data)
+            console.log(dbUser)
             const response = await db.updateOne({_id : {$eq:ObjectId(dbUser._id)}} , {$set : {
                 email:data.email,
                 firstName:data.firstName,
                 lastName:data.lastName,
+                image:data.image ?? dbUser.image,
             } })
             response.upsertedId = dbUser._id
             return response
