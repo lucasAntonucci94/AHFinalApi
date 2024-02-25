@@ -114,6 +114,7 @@ const updateOne = async(user) =>
             email:user.email,
             firstName:user.firstName,
             lastName:user.lastName,
+            image:user.image,
             isAdmin: user.isAdmin
         } })
 },'Users')
