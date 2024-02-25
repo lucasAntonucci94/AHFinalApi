@@ -125,9 +125,9 @@ const updateProfile = async(data) =>
             console.log(data)
             console.log(dbUser)
             const response = await db.updateOne({_id : {$eq:ObjectId(dbUser._id)}} , {$set : {
-                email:data.email,
-                firstName:data.firstName,
-                lastName:data.lastName,
+                email:data.email ?? dbUser.email,
+                firstName:data.firstName ?? dbUser.firstName,
+                lastName:data.lastName ?? dbUser.lastName,
                 image:data.image ?? dbUser.image,
             } })
             response.upsertedId = dbUser._id

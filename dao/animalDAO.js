@@ -25,6 +25,7 @@ const insertOne = async(animal) =>
         name:animal.name,
         age:animal.age,
         description:animal.description,
+        image:animal.image,
         specie: {
             _id:ObjectId(animal.specie._id),
             name:animal.specie.name            
@@ -39,10 +40,11 @@ const insertOne = async(animal) =>
 const updateOne = async(animal) =>
 database(async db => {
  
-    let aux = db.updateOne({_id : {$eq:ObjectId(animal.id)}} , {$set : {
+    let response = db.updateOne({_id : {$eq:ObjectId(animal.id)}} , {$set : {
         name:animal.name,
         age:animal.age,
         description:animal.description,
+        image:animal.image,
         specie: {
             _id:ObjectId(animal.specie._id),
             name:animal.specie.name            
@@ -54,18 +56,16 @@ database(async db => {
         }
     } })
 
-    return aux
+    return response
 },COLLECTION_NAME)
 
 
 const updateRaceFromAnimals = async(race , idAnimals) =>
     database(async db => {
-     
         let inArray = []
-
         idAnimals?.forEach(element => inArray.push(ObjectId(element)))
         // UPDATE MANY BY IDS
-        let aux =  await db.updateMany({_id: { $in: inArray }}, 
+        let response =  await db.updateMany({_id: { $in: inArray }}, 
             { $set: { race: {
                 _id:  ObjectId(race._id),
                 name: race.name,
@@ -73,11 +73,10 @@ const updateRaceFromAnimals = async(race , idAnimals) =>
             } } }, 
             { multi: true })
             .then(data => {
-
                 return data
             })
      
-        return aux
+        return response
     },COLLECTION_NAME)
 
 
