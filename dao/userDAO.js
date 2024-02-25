@@ -27,6 +27,7 @@ async function create(user) {
                 password: password,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                image: user.image,
                 isAdmin: user.isAdmin,
             })
         }
@@ -52,6 +53,7 @@ async function register(user) {
                 password: password,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                image: user.image,
                 isAdmin: user.isAdmin,
             })
         }
