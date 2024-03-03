@@ -4,6 +4,8 @@ const find = async() =>  dao.find()
 
 const findById = async(id) =>  dao.findOne(id)
 
+const findByEmail = async(email) =>  dao.findOneByEmail(email)
+
 const create = async(user) =>  dao.register(user)
 
 const update = async(user) =>  dao.updateOne(user)
@@ -26,6 +28,7 @@ export{
     updateProfile,
     register,
     findById,
+    findByEmail,
     deleteOne,
     resetPassword
 }

@@ -76,8 +76,15 @@ function findAll(req, res){
 
 function findById(req,res){
     return service.findById(req.params.id)
-    .then(animal =>{
-        res.json(animal)
+    .then(user =>{
+        res.json(user)
+    })
+}
+
+function findByEmail(req,res){
+    return service.findByEmail(req.params.email)
+    .then(user =>{
+        res.json(user)
     })
 }
 
@@ -151,6 +158,7 @@ export{
     register,
     findAll,
     findById,
+    findByEmail,
     deleteOne,
     getLogin,
     update,

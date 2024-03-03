@@ -8,6 +8,10 @@ const findOne = async(id) =>{
     return database(async db => db.findOne({_id: ObjectId(id)}),COLLECTION_NAME)
 }
 
+const findOneByEmail = async(email) =>{
+    return database(async db => db.findOne({email: email}),COLLECTION_NAME)
+}
+
 const insertOne = async(user) =>
     database(async db => db.insertOne(user),COLLECTION_NAME)
 
@@ -145,6 +149,7 @@ export{
     create,
     find,
     findOne,
+    findOneByEmail,
     insertOne,
     deleteOne,
     updateOne,
