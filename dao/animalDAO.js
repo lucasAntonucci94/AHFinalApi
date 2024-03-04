@@ -12,8 +12,6 @@ const findAllByRace = async(race) =>{
 }
 
 const findAllBySpecie = async(specie) =>{
-    console.log('findAllBySpecie: SPECIE ENVIADA')
-    console.log(specie)
     return database(async db => db.find({"specie._id": ObjectId(specie._id)}).toArray(),COLLECTION_NAME)
 }
 
@@ -26,6 +24,7 @@ const insertOne = async(animal) =>
         age:animal.age,
         description:animal.description,
         image:animal.image,
+        genre:animal.genre,
         specie: {
             _id:ObjectId(animal.specie._id),
             name:animal.specie.name            
@@ -45,6 +44,7 @@ database(async db => {
         age:animal.age,
         description:animal.description,
         image:animal.image,
+        genre:animal.genre,
         specie: {
             _id:ObjectId(animal.specie._id),
             name:animal.specie.name            
@@ -82,9 +82,7 @@ const updateRaceFromAnimals = async(race , idAnimals) =>
 
 const updateSpecieFromAnimals = async(specie , idAnimals) =>
     database(async db => {
-     
         let inArray = []
-
         idAnimals?.forEach(element => inArray.push(ObjectId(element)))
         // UPDATE MANY BY IDS
         return  await db.updateMany({_id: { $in: inArray }}, 
